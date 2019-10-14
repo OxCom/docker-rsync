@@ -8,7 +8,7 @@ ENV TERM=xterm \
 
 RUN apk update \
     && apk upgrade \
-    && apk add rsync openssh \
+    && apk add rsync openssl \
     && rm -rf /tmp/* /var/cache/apk/* \
     && mkdir -p /var/www/project/
 
