@@ -1,6 +1,9 @@
 version: 2
 jobs:
     build_alpine:
+        filters:
+            tags:
+                only: /.*/
         docker:
             - image: circleci/buildpack-deps
         steps:
@@ -15,7 +18,12 @@ jobs:
                   name: "Publish alpine image"
                   command: |
                       docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-latest
+                      docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH
+
     build_debian:
+        filters:
+            tags:
+                only: /.*/
         docker:
             - image: circleci/buildpack-deps
         steps:
@@ -30,6 +38,27 @@ jobs:
                   name: "Publish debian image"
                   command: |
                       docker push ${DOCKER_HUB_USER_ID}/rsync:debian-latest
+                      docker push ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH
+
+    build_centos:
+        filters:
+            tags:
+                only: /.*/
+        docker:
+            -   image: circleci/buildpack-deps
+        steps:
+            - checkout
+            - setup_remote_docker
+            -   run:
+                    name: "Build centos image"
+                    command: |
+                        docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:centos-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:centos-latest -f alpine/Dockerfile
+            -   run:
+                    name: "Publish centos image"
+                    command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:centos-latest
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:centos-$CIRCLE_BRANCH
 
 workflows:
   version: 2
