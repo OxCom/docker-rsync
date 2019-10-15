@@ -14,6 +14,7 @@ jobs:
             -   run:
                     name: "Publish alpine image"
                     command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:alpine
                         docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-latest
                         docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-${CIRCLE_TAG}
 
@@ -34,6 +35,7 @@ jobs:
             -   run:
                     name: "Publish debian image"
                     command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:debian
                         docker push ${DOCKER_HUB_USER_ID}/rsync:debian-latest
                         docker push ${DOCKER_HUB_USER_ID}/rsync:debian-${CIRCLE_TAG}
 
@@ -51,6 +53,7 @@ jobs:
             -   run:
                     name: "Publish centos image"
                     command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:centos
                         docker push ${DOCKER_HUB_USER_ID}/rsync:centos-latest
                         docker push ${DOCKER_HUB_USER_ID}/rsync:centos-${CIRCLE_TAG}
 
