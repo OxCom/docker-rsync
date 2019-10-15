@@ -61,20 +61,20 @@ workflows:
             -   build_alpine:
                     filters:
                         tags:
-                            only: /^.*/
+                            only: /^v.*/
                         branches:
                             ignore: /.*/
 
             -   build_debian:
                     filters:
                         tags:
-                            only: /^.*/
+                            only: /^v.*/
                         branches:
                             ignore: /.*/
 
             -   build_centos:
                     filters:
                         tags:
-                            only: /^.*/
+                            only: /^v.*/
                         branches:
                             ignore: /.*/
