@@ -63,3 +63,10 @@ jobs:
                     command: |
                         docker push $DOCKER_HUB_USER_ID/rsync:centos-$CIRCLE_BRANCH
                         docker push $DOCKER_HUB_USER_ID/rsync:centos-latest
+
+workflows:
+    version: 2
+    jobs:
+        - build_alpine
+        - build_debian
+        - build_centos
