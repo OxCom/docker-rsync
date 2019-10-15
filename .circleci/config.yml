@@ -1,9 +1,9 @@
 version: 2
 jobs:
     build_alpine:
-        filters:
-            tags:
-                only: /.*/
+#        filters:
+#            tags:
+#                only: /.*/
         docker:
               - image: circleci/buildpack-deps
         resource_class: small
@@ -18,13 +18,13 @@ jobs:
             -   run:
                     name: 'Publish alpine image'
                     command: |
-                        docker push $DOCKER_HUB_USER_ID/rsync:alpine-$CIRCLE_BRANCH
+#                        docker push $DOCKER_HUB_USER_ID/rsync:alpine-$CIRCLE_BRANCH
                         docker push $DOCKER_HUB_USER_ID/rsync:alpine-latest
 
     build_debian:
-        filters:
-            tags:
-                only: /.*/
+#        filters:
+#            tags:
+#                only: /.*/
         docker:
             -   image: circleci/buildpack-deps
         resource_class: small
@@ -40,13 +40,13 @@ jobs:
             -   run:
                     name: 'Publish debian image'
                     command: |
-                        docker push $DOCKER_HUB_USER_ID/rsync:debian-$CIRCLE_BRANCH
+#                        docker push $DOCKER_HUB_USER_ID/rsync:debian-$CIRCLE_BRANCH
                         docker push $DOCKER_HUB_USER_ID/rsync:debian-latest
 
     build_centos:
-        filters:
-            tags:
-                only: /.*/
+#        filters:
+#            tags:
+#                only: /.*/
         docker:
             -   image: circleci/buildpack-deps
         resource_class: small
@@ -61,7 +61,7 @@ jobs:
             -   run:
                     name: 'Publish centos image'
                     command: |
-                        docker push $DOCKER_HUB_USER_ID/rsync:centos-$CIRCLE_BRANCH
+#                        docker push $DOCKER_HUB_USER_ID/rsync:centos-$CIRCLE_BRANCH
                         docker push $DOCKER_HUB_USER_ID/rsync:centos-latest
 
 workflows:
