@@ -10,7 +10,7 @@ jobs:
                     name: "Build alpine image"
                     command: |
                         docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
-                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-latest -f alpine/Dockerfile
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:alpine --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-latest -f alpine/Dockerfile
             -   run:
                     name: "Publish alpine image"
                     command: |
@@ -31,7 +31,7 @@ jobs:
                     name: "Build debian image"
                     command: |
                         docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
-                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:debian-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:debian-latest -f alpine/Dockerfile
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:debian --tag ${DOCKER_HUB_USER_ID}/rsync:debian-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:debian-latest -f alpine/Dockerfile
             -   run:
                     name: "Publish debian image"
                     command: |
@@ -49,7 +49,7 @@ jobs:
                     name: "Build centos image"
                     command: |
                         docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
-                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:centos-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:centos-latest -f alpine/Dockerfile
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:centos --tag ${DOCKER_HUB_USER_ID}/rsync:centos-${CIRCLE_TAG} --tag ${DOCKER_HUB_USER_ID}/rsync:centos-latest -f alpine/Dockerfile
             -   run:
                     name: "Publish centos image"
                     command: |
