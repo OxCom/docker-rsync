@@ -1,9 +1,6 @@
 version: 2
 jobs:
     build_alpine:
-        filters:
-            tags:
-                only: /.*/
         docker:
             - image: circleci/buildpack-deps
         steps:
@@ -41,9 +38,6 @@ jobs:
                       docker push ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH
 
     build_centos:
-        filters:
-            tags:
-                only: /.*/
         docker:
             -   image: circleci/buildpack-deps
         steps:
@@ -64,6 +58,15 @@ workflows:
   version: 2
   deploy:
     jobs:
-      - build_alpine
-      - build_debian
-#        - build_centos
+      - build_alpine:
+          filters:
+            tags:
+              only: /v.*/
+      - build_debian:
+          filters:
+              tags:
+                  only: /v.*/
+      - build_centos:
+            filters:
+                tags:
+                    only: /v.*/
