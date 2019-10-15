@@ -2,40 +2,40 @@ version: 2
 jobs:
     build_alpine:
         docker:
-            - image: circleci/buildpack-deps
+            -   image: circleci/buildpack-deps
         steps:
             - checkout
             - setup_remote_docker
-            - run:
-                  name: "Build alpine image"
-                  command: |
-                      docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
-                      docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-latest -f alpine/Dockerfile
-            - run:
-                  name: "Publish alpine image"
-                  command: |
-                      docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-latest
-                      docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH
+            -   run:
+                    name: "Build alpine image"
+                    command: |
+                        docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-latest -f alpine/Dockerfile
+            -   run:
+                    name: "Publish alpine image"
+                    command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-latest
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH
 
     build_debian:
         filters:
             tags:
                 only: /.*/
         docker:
-            - image: circleci/buildpack-deps
+            -   image: circleci/buildpack-deps
         steps:
             - checkout
             - setup_remote_docker
-            - run:
-                  name: "Build debian image"
-                  command: |
-                      docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
-                      docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:debian-latest -f alpine/Dockerfile
-            - run:
-                  name: "Publish debian image"
-                  command: |
-                      docker push ${DOCKER_HUB_USER_ID}/rsync:debian-latest
-                      docker push ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH
+            -   run:
+                    name: "Build debian image"
+                    command: |
+                        docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                        docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:debian-latest -f alpine/Dockerfile
+            -   run:
+                    name: "Publish debian image"
+                    command: |
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:debian-latest
+                        docker push ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH
 
     build_centos:
         docker:
@@ -55,18 +55,18 @@ jobs:
                         docker push ${DOCKER_HUB_USER_ID}/rsync:centos-$CIRCLE_BRANCH
 
 workflows:
-  version: 2
-  deploy:
-    jobs:
-      - build_alpine:
-          filters:
-            tags:
-              only: /v.*/
-      - build_debian:
-          filters:
-              tags:
-                  only: /v.*/
-      - build_centos:
-            filters:
-                tags:
-                    only: /v.*/
+    version: 2
+    deploy:
+        jobs:
+            -   build_alpine:
+                    filters:
+                        tags:
+                            only: /v.*/
+            -   build_debian:
+                    filters:
+                        tags:
+                            only: /v.*/
+            -   build_centos:
+                    filters:
+                        tags:
+                            only: /v.*/
