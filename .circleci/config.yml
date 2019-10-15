@@ -13,13 +13,13 @@ jobs:
             - run:
                 name: Build alpine image
                 command: |
-                    docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-                    docker build . --rm --tag $DOCKER_HUB_USER_ID/rsync:alpine-$CIRCLE_BRANCH --tag $DOCKER_HUB_USER_ID/rsync:alpine-latest -f alpine/Dockerfile
+                    docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                    docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:alpine-latest -f alpine/Dockerfile
             - run:
                 name: Publish alpine image
                 command: |
-#                        docker push $DOCKER_HUB_USER_ID/rsync:alpine-$CIRCLE_BRANCH
-                    docker push $DOCKER_HUB_USER_ID/rsync:alpine-latest
+#                        docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-$CIRCLE_BRANCH
+                    docker push ${DOCKER_HUB_USER_ID}/rsync:alpine-latest
 
     build_debian:
 #        filters:
@@ -34,14 +34,14 @@ jobs:
             - run:
                 name: Build debian image
                 command: |
-                    docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-                    docker build . --rm --tag $DOCKER_HUB_USER_ID/rsync:debian-$CIRCLE_BRANCH --tag $DOCKER_HUB_USER_ID/rsync:debian-latest -f debian/Dockerfile
+                    docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                    docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:debian-latest -f debian/Dockerfile
 
             - run:
                 name: Publish debian image
                 command: |
-#                        docker push $DOCKER_HUB_USER_ID/rsync:debian-$CIRCLE_BRANCH
-                    docker push $DOCKER_HUB_USER_ID/rsync:debian-latest
+#                        docker push ${DOCKER_HUB_USER_ID}/rsync:debian-$CIRCLE_BRANCH
+                    docker push ${DOCKER_HUB_USER_ID}/rsync:debian-latest
 
     build_centos:
 #        filters:
@@ -56,13 +56,13 @@ jobs:
             - run:
                 name: Build centos image
                 command: |
-                    docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-                    docker build . --rm --tag $DOCKER_HUB_USER_ID/rsync:centos-$CIRCLE_BRANCH --tag $DOCKER_HUB_USER_ID/rsync:centos-latest -f debian/Dockerfile
+                    docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PWD}
+                    docker build . --rm --tag ${DOCKER_HUB_USER_ID}/rsync:centos-$CIRCLE_BRANCH --tag ${DOCKER_HUB_USER_ID}/rsync:centos-latest -f debian/Dockerfile
             - run:
                 name: Publish centos image
                 command: |
-#                        docker push $DOCKER_HUB_USER_ID/rsync:centos-$CIRCLE_BRANCH
-                    docker push $DOCKER_HUB_USER_ID/rsync:centos-latest
+#                        docker push ${DOCKER_HUB_USER_ID}/rsync:centos-$CIRCLE_BRANCH
+                    docker push ${DOCKER_HUB_USER_ID}/rsync:centos-latest
 
 workflows:
     version: 2
