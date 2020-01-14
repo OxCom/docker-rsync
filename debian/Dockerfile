@@ -2,8 +2,8 @@ FROM debian:stable-slim
 
 ENV TERM=xterm \
     DEBIAN_FRONTEND=noninteractive \
-    INITRD No \
-    LANG en_US.utf8
+    INITRD=No \
+    LANG=en_US.utf8
 
 RUN apt-get update \ 
     && apt-get install -y --no-install-recommends rsync openssl \
