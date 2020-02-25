@@ -4,7 +4,7 @@ RUN yum -y update \
     && yum install rsync -y \
     && yum install openssl -y \
     && yum clean all \
-    && mkdir -p /var/www/project/
+    && mkdir -p /var/project/
 
-WORKDIR /var/www/project/
+WORKDIR /var/project/
 

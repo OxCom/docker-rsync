@@ -7,11 +7,11 @@ ENV TERM=xterm \
 
 RUN apt-get update \ 
     && apt-get install -y --no-install-recommends rsync openssl \
-    && mkdir -p /var/www/project/ \
+    && mkdir -p /var/project/ \
     && rm -rf /tmp/* /var/tmp/* \
               /var/lib/apt/lists/* \
               /var/cache/apt/archives/*.deb \
               /var/cache/apt/archives/partial/*.deb \ 
               /var/cache/apt/*.bin
 
-WORKDIR /var/www/project/
+WORKDIR /var/project/

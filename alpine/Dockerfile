@@ -10,7 +10,7 @@ RUN apk update \
     && apk upgrade \
     && apk add rsync openssl \
     && rm -rf /tmp/* /var/cache/apk/* \
-    && mkdir -p /var/www/project/
+    && mkdir -p /var/project/
 
-WORKDIR /var/www/project/
+WORKDIR /var/project/
 
