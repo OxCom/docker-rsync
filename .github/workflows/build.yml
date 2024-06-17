@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        os: [debian, alpine, centos]
+        os: [debian, alpine]
 
     steps:
       - uses: actions/checkout@v4
@@ -39,8 +40,9 @@ jobs:
       id-token: write
 
     strategy:
+      fail-fast: false
       matrix:
-        os: [ debian, alpine, centos ]
+        os: [ debian, alpine ]
 
     steps:
       - name: Checkout repository
