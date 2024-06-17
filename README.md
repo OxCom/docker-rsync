@@ -1,2 +1,2 @@
-# docker-rsync
-rsync tool in docker
+# Docker rsync
+The rsync tool in docker
