@@ -69,4 +69,4 @@ jobs:
           context: .
           file: ./${{ matrix.os }}/Dockerfile
           push: true
-          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}-${{ matrix.os }}:latest
+          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}:${{ matrix.os }}-latest
