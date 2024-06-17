@@ -6,10 +6,8 @@ ENV TERM=xterm \
     LC_CTYPE=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
-RUN apk update \
-    && apk upgrade \
-    && apk add rsync openssl \
-    && rm -rf /tmp/* /var/cache/apk/* \
+RUN apk --no-cache upgrade \
+    && apk --no-cache add rsync openssl \
     && mkdir -p /var/project/
 
 WORKDIR /var/project/
