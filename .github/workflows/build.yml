@@ -66,17 +66,17 @@ jobs:
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
-#      - name: Extract metadata (tags, labels) for Docker
-#        id: meta
-#        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-#        with:
-#          images: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}
 
-#      - name: Build and push Docker image
-#        id: push
-#        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-#        with:
-#          context: .
-#          file: ./${{ matrix.os }}/Dockerfile
-#          push: true
-#          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}:${{ matrix.os }}-latest
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./${{ matrix.os }}/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}:${{ matrix.os }}-${{ env.RELEASE_VERSION }}
