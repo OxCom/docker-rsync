@@ -47,8 +47,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Set release version
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/master" ]]; then
+            echo "RELEASE_VERSION=latest" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          else
+            echo "This workflow should only run on a tag or the master branch."
+            exit 1
+          fi
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
