@@ -2,8 +2,7 @@ name: Docker rsync
 on:
   push:
     branches: [ "master" ]
-  schedule:
-    - cron: '24 10 * * *'
+    tags: ['*.*.*']
 
 env:
   DOCKER_NS: oxcom
@@ -48,6 +47,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -56,17 +58,17 @@ jobs:
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}
+#      - name: Extract metadata (tags, labels) for Docker
+#        id: meta
+#        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+#        with:
+#          images: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}
 
-      - name: Build and push Docker image
-        id: push
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          context: .
-          file: ./${{ matrix.os }}/Dockerfile
-          push: true
-          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}:${{ matrix.os }}-latest
+#      - name: Build and push Docker image
+#        id: push
+#        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+#        with:
+#          context: .
+#          file: ./${{ matrix.os }}/Dockerfile
+#          push: true
+#          tags: ${{ env.DOCKER_NS }}/${{ env.DOCKER_REPO }}:${{ matrix.os }}-latest
